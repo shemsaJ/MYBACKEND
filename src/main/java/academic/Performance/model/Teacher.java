@@ -20,14 +20,5 @@ public class Teacher {
     private String firstName;
     private String secondName;
     private String department;
-    public Object getLastName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLastName'");
-    }
-    public void setLastName(Object lastName) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setLastName'");
-    }
-    
 
 }

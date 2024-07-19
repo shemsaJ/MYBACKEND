@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,11 @@ import academic.Performance.model.Teacher;
 import academic.Performance.services.TeacherService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping("api/teacher")
 public class TeacherController {
 
- @Autowired
+    @Autowired
     private TeacherService teacherService;
 
     @PostMapping
@@ -43,20 +45,14 @@ public class TeacherController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteTeacher(@PathVariable("id") Long Teacher){
-        teacherService.deleteTeacher(Teacher);
-        return new ResponseEntity<String>("Teacher has been deleted ", HttpStatus.OK);
+    public ResponseEntity<String> deleteTeacher(@PathVariable("id") Long teacherId){
+        teacherService.deleteTeacher(teacherId);
+        return new ResponseEntity<>("Teacher has been deleted ", HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Teacher> updateTeacher(@PathVariable("id") Long teacherId, @RequestBody Teacher teacher){
-
-        Teacher updatedtTeacher = teacherService.updateTeacher(teacherId, teacher);
-        return new ResponseEntity<>(updatedtTeacher, HttpStatus.OK);
-
+        Teacher updatedTeacher = teacherService.updateTeacher(teacherId, teacher);
+        return new ResponseEntity<>(updatedTeacher, HttpStatus.OK);
     } 
-    
 }
-
-    
-
